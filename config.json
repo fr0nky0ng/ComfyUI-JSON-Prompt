@@ -1,0 +1,160 @@
+{
+    "system_prompt": "Please fill in the above description in English into the JSON template below. If any JSON field is not mentioned in the description, fill in the appropriate content based on your understanding of the description. If you are unsure what to fill in, enter 'null'. The content of the JSON fields must be in English. Only JSON data will be returned.",
+    "template": {
+        "style": "",
+        "output": {
+            "color_profile": "sRGB",
+            "render_intent": "photo"
+        },
+        "subject": {
+            "category": "human",
+            "gender_presentation": "",
+            "ethnicity": "",
+            "age_bracket": "",
+            "body": {
+                "build": "",
+                "proportions": "",
+                "posture": "",
+                "pose": "",
+                "gesture": "",
+                "head_tilt_deg": 0
+            },
+            "face": {
+                "expression": "",
+                "gaze": "",
+                "eye_action": "",
+                "skin_tone": "",
+                "makeup": "",
+                "features": ""
+            },
+            "hair": {
+                "length": "",
+                "style": "",
+                "color": ""
+            },
+            "wardrobe": {
+                "top": "",
+                "outerwear": "",
+                "bottom": "",
+                "footwear": ""
+            }
+        },
+        "environment": {
+            "location": "",
+            "set": "",
+            "props": ""
+        },
+        "lighting": {
+            "key": {
+                "source": "",
+                "modifier": "",
+                "position": "",
+                "effect": ""
+            },
+            "fill": {
+                "type": ""
+            },
+            "ambient": "",
+            "white_balance_K": 3200
+        },
+        "camera": {
+            "system": "",
+            "sensor": "",
+            "lens": {
+                "type": "",
+                "focal_length_mm": 50
+            },
+            "exposure": {
+                "iso": 100,
+                "aperture_f": 1.4,
+                "metering": ""
+            },
+            "focus": {
+                "target": "",
+                "depth_of_field": ""
+            },
+            "framing": {
+                "orientation": "",
+                "crop": "",
+                "angle": "",
+                "composition": ""
+            }
+        },
+        "color_grade": {
+            "look": "",
+            "contrast": "",
+            "saturation": ""
+        },
+        "postprocess": {
+            "noise_reduction": "",
+            "texture": "",
+            "sharpen": "",
+            "blemish_control": ""
+        },
+        "quality_targets": [
+            "accurate limb lengths and joint angles",
+            "correct finger count and articulation",
+            "realistic fabric tension and folds",
+            "precise chiaroscuro shadows and highlights"
+        ],
+        "negative_prompt": [
+            "no altered or exaggerated body proportions",
+            "no extra or fused fingers",
+            "no modern digital artifacts",
+            "no text or watermarks",
+            "no extreme distortion beyond low-angle perspective",
+            "no NSFW content",
+            "no high-key bright lighting",
+            "no cool tones"
+        ]
+    },
+    "camera_settings": {
+        "lens": [
+            {
+                "type": "wide-angle prime",
+                "focal_length_mm": 24
+            },
+            {
+                "type": "wide-angle prime",
+                "focal_length_mm": 28
+            },
+            {
+                "type": "wide-angle prime",
+                "focal_length_mm": 35
+            },
+            {
+                "type": "standard prime",
+                "focal_length_mm": 50
+            },
+            {
+                "type": "portrait prime",
+                "focal_length_mm": 85
+            },
+            {
+                "type": "telephoto prime",
+                "focal_length_mm": 135
+            },
+            {
+                "type": "telephoto prime",
+                "focal_length_mm": 200
+            }
+        ],
+        "exposure": {
+            "aperture_f": [1.4, 2.0, 2.8, 4.0, 5.6, 8.0, 11.0, 16.0],
+            "metering": [
+                "balanced exposure with natural contrast",
+                "evaluative metering for overall scene balance",
+                "center-weighted average for subject emphasis",
+                "spot metering for precise highlight control",
+                "partial metering for central subject isolation",
+                "highlight-weighted to preserve dynamic range",
+                "multi-segment analysis with adaptive exposure"
+            ]  
+        },
+        "framing":{
+            "orientation": ["horizontal", "vertical"],
+            "crop": ["full-body", "upper body", "waist-up", "three-quarter body",  "mid-thigh", "head and shoulders", "close-up headshot", "bust portrait"],
+            "angle": ["eye-level", "high-angle downward", "low-angle upward", "bird's-eye view", "worm's-eye view", "Dutch tilt", "over-the-shoulder", "three-quarter angle", "profile view", "frontal view"]
+        }
+    }
+}
