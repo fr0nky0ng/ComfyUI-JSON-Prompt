@@ -2,7 +2,9 @@ import json
 import os
 import re
 import copy
+'''
 import google.generativeai as genai  # 導入 Google AI 函式庫
+'''
 
 
 # ==============================================================================
@@ -216,6 +218,8 @@ class FormatLLMOutput:
         return (final_output,)
 
 
+# pending to debug
+'''
 class GeminiPromptNode:
     NODE_NAME = "Gemini_Prompt_Node"
     CATEGORY = "LLM"  # 將其放在一個新的類別 "LLM" 中
@@ -284,8 +288,7 @@ class GeminiPromptNode:
         return (result_text,)
 
 
-# pending to debug
-'''
+
 class GeminiImageNode:
     """
     ComfyUI 自定義節點：用於調用 Gemini/Imagen API 進行圖片生成。
