@@ -1,111 +1,111 @@
 {
-    "system_prompt": "Please fill in the above description in English into the JSON template below. If any JSON field is not mentioned in the description, fill in the appropriate content based on your understanding of the description. If you are unsure what to fill in, enter 'null'. The content of the JSON fields must be in English. Only JSON data will be returned.",
+    "system_prompt": "Update the JSON template below with the above description in English. You need to refer to the style of each field in the template when updating; do not simply retain the template's default values. If a field cannot be found in the given description, you can adjust its settings based on experience. All updates must be in English, and you should ultimately only return JSON data.",
     "template": {
-        "style": "",
+        "style": "High-key studio portrait, direct flash aesthetic, East Asian social media style (e.g., Ulzzang, Douyin), stylized beauty retouching.",
         "output": {
             "color_profile": "sRGB",
             "render_intent": "photo"
         },
         "subject": {
             "category": "human",
-            "gender_presentation": "",
-            "ethnicity": "",
-            "age_bracket": "",
+            "gender_presentation": "female",
+            "ethnicity": "East Asian (e.g., Korean, Chinese)",
+            "age_bracket": "young_adult",
             "body": {
-                "build": "",
-                "proportions": "",
-                "posture": "",
-                "pose": "",
-                "gesture": "",
-                "head_tilt_deg": 0
+                "build": "slim",
+                "proportions": "natural human anatomy",
+                "posture": "relaxed on sofa, seated casually",
+                "pose": "seated, legs crossed and tucked close to body",
+                "gesture": "Right hand raised, fingers loosely curled, back of fingers/knuckles gently supporting the chin and lower cheek.",
+                "head_tilt_deg": 5
             },
             "face": {
-                "expression": "",
-                "gaze": "",
-                "eye_action": "",
-                "skin_tone": "",
-                "makeup": "",
-                "features": ""
+                "expression": "Playful, alluring",
+                "gaze": "right eye direct to camera",
+                "eye_action": "winking with the left eye",
+                "skin_tone": "Very pale porcelain (lightened aesthetic)",
+                "makeup": "Stylized K-Beauty/Douyin look: flawless matte base, strong pink blush high on cheeks, pink gradient lips, defined brows, light eyeliner, emphasized Aegyo-sal",
+                "features": "small beauty mark/mole under the left eye"
             },
             "hair": {
-                "length": "",
-                "style": "",
-                "color": ""
+                "length": "long",
+                "style": "messy high updo/bun with loose strands and curtain bangs",
+                "color": "dark brown"
             },
             "wardrobe": {
-                "top": "",
-                "outerwear": "",
-                "bottom": "",
-                "footwear": ""
+                "top": "white fitted cropped camisole",
+                "outerwear": "light gray zip hoodie, worn open and slightly slipping off both shoulders",
+                "bottom": "white lounge shorts with drawstring",
+                "footwear": "barefoot"
             }
         },
         "environment": {
-            "location": "",
-            "set": "",
-            "props": ""
+            "location": "studio or minimalist interior",
+            "set": "black leather sofa against a plain white or light gray wall",
+            "props": "Silver laptop (Apple MacBook, logo visible) placed on the cushion to the subject's right (camera left)"
         },
         "lighting": {
             "key": {
-                "source": "",
-                "modifier": "",
-                "position": "",
-                "effect": ""
+                "source": "strobe/flash",
+                "modifier": "Bare reflector or direct flash (hard source)",
+                "position": "Near camera axis, slightly camera-right and above eye line",
+                "effect": "Crisp, dark, well-defined cast shadows on the wall directly behind subject; strong specular highlights on skin and sofa leather."
             },
             "fill": {
-                "type": ""
+                "type": "minimal/none"
             },
-            "ambient": "",
-            "white_balance_K": 3200
+            "ambient": "suppressed",
+            "white_balance_K": 5800
         },
         "camera": {
-            "system": "",
-            "sensor": "",
+            "system": "Digital Camera",
+            "sensor": "full-frame equivalent",
             "lens": {
-                "type": "",
+                "type": "prime",
                 "focal_length_mm": 50
             },
             "exposure": {
                 "iso": 100,
-                "aperture_f": 1.4,
-                "metering": ""
+                "aperture_f": 4.0,
+                "metering": "Bright exposure, high-key aesthetic"
             },
             "focus": {
-                "target": "",
-                "depth_of_field": ""
+                "target": "near eye (right eye)",
+                "depth_of_field": "moderate"
             },
             "framing": {
-                "orientation": "",
-                "crop": "",
-                "angle": "",
-                "composition": ""
+                "orientation": "vertical",
+                "crop": "mid-thigh to head with room above hair",
+                "angle": "eye-level",
+                "composition": "subject centrally framed"
             }
         },
         "color_grade": {
-            "look": "",
-            "contrast": "",
-            "saturation": ""
+            "look": "Bright, clean, slightly cool tone",
+            "contrast": "High contrast",
+            "saturation": "moderate, emphasized pinks"
         },
         "postprocess": {
-            "noise_reduction": "",
-            "texture": "",
-            "sharpen": "",
-            "blemish_control": ""
+            "noise_reduction": "high",
+            "texture": "Highly smoothed skin, poreless appearance ('porcelain doll' or 'beauty filter' effect)",
+            "sharpen": "selective on eyes/lashes",
+            "blemish_control": "Complete removal of all blemishes and texture."
         },
         "quality_targets": [
             "accurate limb lengths and joint angles",
             "correct finger count and articulation",
             "realistic fabric tension and folds",
-            "precise chiaroscuro shadows and highlights"
+            "accurate winking expression"
         ],
         "negative_prompt": [
             "no altered or exaggerated body proportions",
             "no extra or fused fingers",
-            "no modern digital artifacts",
-            "no text or watermarks",
-            "no extreme distortion beyond low-angle perspective",
+            "no realistic skin texture, pores, or blemishes",
+            "no text or watermarks (excluding specified logos)",
+            "no extreme wide-angle distortion",
             "no NSFW content",
-            "no high-key bright lighting",
-            "no cool tones"
+            "no dark/moody lighting",
+            "no warm tones"
         ]
     },
     "camera_settings": {
@@ -140,7 +140,16 @@
             }
         ],
         "exposure": {
-            "aperture_f": [1.4, 2.0, 2.8, 4.0, 5.6, 8.0, 11.0, 16.0],
+            "aperture_f": [
+                1.4,
+                2.0,
+                2.8,
+                4.0,
+                5.6,
+                8.0,
+                11.0,
+                16.0
+            ],
             "metering": [
                 "balanced exposure with natural contrast",
                 "evaluative metering for overall scene balance",
@@ -149,12 +158,35 @@
                 "partial metering for central subject isolation",
                 "highlight-weighted to preserve dynamic range",
                 "multi-segment analysis with adaptive exposure"
-            ]  
+            ]
         },
-        "framing":{
-            "orientation": ["horizontal", "vertical"],
-            "crop": ["full-body", "upper body", "waist-up", "three-quarter body",  "mid-thigh", "head and shoulders", "close-up headshot", "bust portrait"],
-            "angle": ["eye-level", "high-angle downward", "low-angle upward", "bird's-eye view", "worm's-eye view", "Dutch tilt", "over-the-shoulder", "three-quarter angle", "profile view", "frontal view"]
+        "framing": {
+            "orientation": [
+                "horizontal",
+                "vertical"
+            ],
+            "crop": [
+                "full-body",
+                "upper body",
+                "waist-up",
+                "three-quarter body",
+                "mid-thigh",
+                "head and shoulders",
+                "close-up headshot",
+                "bust portrait"
+            ],
+            "angle": [
+                "eye-level",
+                "high-angle downward",
+                "low-angle upward",
+                "bird's-eye view",
+                "worm's-eye view",
+                "Dutch tilt",
+                "over-the-shoulder",
+                "three-quarter angle",
+                "profile view",
+                "frontal view"
+            ]
         }
     }
 }

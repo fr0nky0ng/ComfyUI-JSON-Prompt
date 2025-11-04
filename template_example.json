@@ -1,110 +1,110 @@
 {
-    "template": {
-        "style": "Vintage artistic portrait, cinematic film grain texture, warm brown tones with deep dark contrasts, dramatic chiaroscuro lighting, low-angle upward shot emphasizing volumetric depth and atmospheric tension.",
-        "output": {
-            "color_profile": "sRGB",
-            "render_intent": "photo"
+    "URL": "https://x.com/IamEmily2050/status/1975554358495654236",
+    "description": "From a X (formerly Twitter) post by @IamEmily2050, a high-key studio portrait of a young East",
+    "style": "High-key studio portrait, direct flash aesthetic, East Asian social media style (e.g., Ulzzang, Douyin), stylized beauty retouching.",
+    "output": {
+        "color_profile": "sRGB",
+        "render_intent": "photo"
+    },
+    "subject": {
+        "category": "human",
+        "gender_presentation": "female",
+        "ethnicity": "East Asian (e.g., Korean, Chinese)",
+        "age_bracket": "young_adult",
+        "body": {
+            "build": "slim",
+            "proportions": "natural human anatomy",
+            "posture": "relaxed on sofa, seated casually",
+            "pose": "seated, legs crossed and tucked close to body",
+            "gesture": "Right hand raised, fingers loosely curled, back of fingers/knuckles gently supporting the chin and lower cheek.",
+            "head_tilt_deg": 5
         },
-        "subject": {
-            "category": "human",
-            "gender_presentation": "female",
-            "ethnicity": "Chinese (porcelain-fair skin)",
-            "age_bracket": "young_adult",
-            "body": {
-                "build": "elegantly slender with medium breasts",
-                "proportions": "natural human anatomy",
-                "posture": "relaxed yet theatrically poised on armchair",
-                "pose": "seated confidently facing camera head-on with legs boldly spread apart in low-angle perspective for dramatic emphasis",
-                "gesture": "Left arm casually resting against chair back for support, right hand delicately cupping cheek from the side with fingertips subtly curved in a thoughtful gesture.",
-                "head_tilt_deg": 0
-            },
-            "face": {
-                "expression": "serene, introspective with quiet intensity",
-                "gaze": "direct to camera",
-                "eye_action": "none",
-                "skin_tone": "porcelain-fair, luminous, glossy",
-                "makeup": "minimal, natural elegance",
-                "features": "none specified"
-            },
-            "hair": {
-                "length": "long",
-                "style": "wavy",
-                "color": "black"
-            },
-            "wardrobe": {
-                "top": "crisp white underlayer",
-                "outerwear": "open unbuttoned deep navy blue tailored suit jacket with diamond brooch on lapel",
-                "bottom": "high-waisted wide-leg beige trousers cinched by wide brown leather belt",
-                "footwear": "not visible"
-            }
+        "face": {
+            "expression": "Playful, alluring",
+            "gaze": "right eye direct to camera",
+            "eye_action": "winking with the left eye",
+            "skin_tone": "Very pale porcelain (lightened aesthetic)",
+            "makeup": "Stylized K-Beauty/Douyin look: flawless matte base, strong pink blush high on cheeks, pink gradient lips, defined brows, light eyeliner, emphasized Aegyo-sal",
+            "features": "small beauty mark/mole under the left eye"
         },
-        "environment": {
-            "location": "elegant interior room",
-            "set": "classic light taupe antique velvet armchair with curved armrests, against rear wall with thick draped vertical striped curtains creating shadows",
-            "props": "exquisite diamond brooch on jacket lapel"
+        "hair": {
+            "length": "long",
+            "style": "messy high updo/bun with loose strands and curtain bangs",
+            "color": "dark brown"
         },
-        "lighting": {
-            "key": {
-                "source": "primary key light",
-                "modifier": "steep angle sidelight with rim highlights",
-                "position": "upper left",
-                "effect": "intense sidelight illuminating left side of face, shoulder, arm, brooch, and trouser folds; soft graduated shadows on back, chair, and curtains."
-            },
-            "fill": {
-                "type": "diffused light filtering through fabric"
-            },
-            "ambient": "warm ambient glows with subtle lens flares",
-            "white_balance_K": 3200
+        "wardrobe": {
+            "top": "white fitted cropped camisole",
+            "outerwear": "light gray zip hoodie, worn open and slightly slipping off both shoulders",
+            "bottom": "white lounge shorts with drawstring",
+            "footwear": "barefoot"
+        }
+    },
+    "environment": {
+        "location": "studio or minimalist interior",
+        "set": "black leather sofa against a plain white or light gray wall",
+        "props": "Silver laptop (Apple MacBook, logo visible) placed on the cushion to the subject's right (camera left)"
+    },
+    "lighting": {
+        "key": {
+            "source": "strobe/flash",
+            "modifier": "Bare reflector or direct flash (hard source)",
+            "position": "Near camera axis, slightly camera-right and above eye line",
+            "effect": "Crisp, dark, well-defined cast shadows on the wall directly behind subject; strong specular highlights on skin and sofa leather."
         },
-        "camera": {
-            "system": "Film Camera (vintage aesthetic)",
-            "sensor": "full-frame equivalent",
-            "lens": {
-                "type": "wide-angle prime",
-                "focal_length_mm": 35
-            },
-            "exposure": {
-                "iso": 200,
-                "aperture_f": 2.8,
-                "metering": "dramatic exposure with deep contrasts"
-            },
-            "focus": {
-                "target": "eyes",
-                "depth_of_field": "shallow"
-            },
-            "framing": {
-                "orientation": "vertical",
-                "crop": "full upper body to thighs with centered composition",
-                "angle": "low-angle upward shot from below, accentuating the open-legged pose and creating exaggerated perspective",
-                "composition": "subject centrally framed"
-            }
+        "fill": {
+            "type": "minimal/none"
         },
-        "color_grade": {
-            "look": "warm brown tones, nostalgic warmth",
-            "contrast": "high with deep dark contrasts",
-            "saturation": "moderate, emphasizing warm glows"
+        "ambient": "suppressed",
+        "white_balance_K": 5800
+    },
+    "camera": {
+        "system": "Digital Camera",
+        "sensor": "full-frame equivalent",
+        "lens": {
+            "type": "prime",
+            "focal_length_mm": 50
         },
-        "postprocess": {
-            "noise_reduction": "low",
-            "texture": "photorealistic with subtle film grain, scratches, and vignette edges",
-            "sharpen": "selective on facial features and fabric details",
-            "blemish_control": "flawless luminous skin."
+        "exposure": {
+            "iso": 100,
+            "aperture_f": 4.0,
+            "metering": "Bright exposure, high-key aesthetic"
         },
-        "quality_targets": [
-            "accurate limb lengths and joint angles",
-            "correct finger count and articulation",
-            "realistic fabric tension and folds",
-            "precise chiaroscuro shadows and highlights"
-        ],
-        "negative_prompt": [
-            "no altered or exaggerated body proportions",
-            "no extra or fused fingers",
-            "no modern digital artifacts",
-            "no text or watermarks",
-            "no extreme distortion beyond low-angle perspective",
-            "no NSFW content",
-            "no high-key bright lighting",
-            "no cool tones"
-        ]
-    }
+        "focus": {
+            "target": "near eye (right eye)",
+            "depth_of_field": "moderate"
+        },
+        "framing": {
+            "orientation": "vertical",
+            "crop": "mid-thigh to head with room above hair",
+            "angle": "eye-level",
+            "composition": "subject centrally framed"
+        }
+    },
+    "color_grade": {
+        "look": "Bright, clean, slightly cool tone",
+        "contrast": "High contrast",
+        "saturation": "moderate, emphasized pinks"
+    },
+    "postprocess": {
+        "noise_reduction": "high",
+        "texture": "Highly smoothed skin, poreless appearance ('porcelain doll' or 'beauty filter' effect)",
+        "sharpen": "selective on eyes/lashes",
+        "blemish_control": "Complete removal of all blemishes and texture."
+    },
+    "quality_targets": [
+        "accurate limb lengths and joint angles",
+        "correct finger count and articulation",
+        "realistic fabric tension and folds",
+        "accurate winking expression"
+    ],
+    "negative_prompt": [
+        "no altered or exaggerated body proportions",
+        "no extra or fused fingers",
+        "no realistic skin texture, pores, or blemishes",
+        "no text or watermarks (excluding specified logos)",
+        "no extreme wide-angle distortion",
+        "no NSFW content",
+        "no dark/moody lighting",
+        "no warm tones"
+    ]
 }

@@ -30,9 +30,21 @@ except json.JSONDecodeError:
 
 # 提取 system_prompt
 SYSTEM_PROMPT = CONFIG_DATA.get("system_prompt", "System Prompt Missing.")
+QUALITY_TARGETS = [
+        "accurate limb lengths and joint angles",
+        "correct finger count and articulation",
+        "realistic fabric tension and folds",
+        "accurate winking expression"
+    ]
+NEGATIVE_PROMPT = [
+        "accurate limb lengths and joint angles",
+        "correct finger count and articulation",
+        "realistic fabric tension and folds",
+        "accurate winking expression"
+    ]
 
 # 提取 template 字典並將其轉換為帶有縮排的 JSON 字符串，用於代碼塊顯示
-TEMPLATE_DICT_ORIGINAL = CONFIG_DATA.get("template", {})
+TEMPLATE_DICT = CONFIG_DATA.get("template", {})
 CAMERA_SETTINGS = CONFIG_DATA.get("camera_settings", {})
 # 提取鏡頭選項 (轉換為 f/mm 格式的字符串列表，並在開頭添加默認選項)
 LENS_OPTIONS = ["SET BY AI"] + \
@@ -70,7 +82,7 @@ class JSONPromptGenerator:
 
     # 將提取的常量作為類別屬性，供方法調用
     SYSTEM_PROMPT = SYSTEM_PROMPT
-    TEMPLATE_DICT_ORIGINAL = TEMPLATE_DICT_ORIGINAL
+    TEMPLATE_DICT = TEMPLATE_DICT
 
     @classmethod
     def INPUT_TYPES(s):
@@ -90,24 +102,18 @@ class JSONPromptGenerator:
                 "orientation": (ORIENTATION_OPTIONS, {"default": "SET BY AI"}),
                 "crop": (CROP_OPTIONS, {"default": "SET BY AI"}),
                 "angle": (ANGLE_OPTIONS, {"default": "SET BY AI"}),
-                "include_negative_prompt": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No"}),
             },
         }
 
-    def generate_prompt(self, text_description, lens, aperture, metering, orientation, crop, angle, include_negative_prompt):
+    def generate_prompt(self, text_description, lens, aperture, metering, orientation, crop, angle):
         """
         步驟 4: 按照指定順序組合字符串並輸出。
         """
 
         user_input = text_description.strip()
-        current_template_dict = copy.deepcopy(self.TEMPLATE_DICT_ORIGINAL)
-
-        if not include_negative_prompt and "negative_prompt" in current_template_dict:
-            del current_template_dict["negative_prompt"]
 
         # 將可能修改後的模板轉換為 JSON 字符串
-        template_str = json.dumps(
-            current_template_dict, indent=4, ensure_ascii=False)
+        template_str = json.dumps(self.TEMPLATE_DICT, indent=4, ensure_ascii=False)
 
         # 構建用戶選擇的 JSON 結構
         user_config_json = {}
@@ -163,7 +169,7 @@ class JSONPromptGenerator:
 
         output_string = (
             f"{user_input}\n\n"
-            f"{user_config_str}"
+            f"{user_config_str}\n\n"
             f"{self.SYSTEM_PROMPT}"
             f"{template_block}"
         )
@@ -183,10 +189,11 @@ class FormatLLMOutput:
         return {
             "required": {
                 "llm_output": ("STRING", {"forceInput": True}),
+                "include_negative_prompt": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No"}),
             },
         }
 
-    def format_output(self, llm_output):
+    def format_output(self, llm_output, include_negative_prompt):
         if not llm_output or not isinstance(llm_output, str):
             # 應該接收到 STRING 類型的輸入
             return ("",)
@@ -211,6 +218,12 @@ class FormatLLMOutput:
         # 檢查是否以 ``` 結尾
         if cleaned_text.endswith("```"):
             cleaned_text = cleaned_text[:-len("```")].strip()
+        
+        prompt_dict = json.loads(cleaned_text)
+        prompt_dict["quality_targets"] = QUALITY_TARGETS
+        if include_negative_prompt:
+            prompt_dict["negative_prompt"] = NEGATIVE_PROMPT
+        cleaned_text = json.dumps(prompt_dict, indent=4, ensure_ascii=False)
 
         # 最終再次清理首尾空格和換行符
         final_output = cleaned_text.strip()
