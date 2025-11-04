@@ -1,0 +1,326 @@
+{
+  "id": "5cc3ca06-6fd9-411a-9ffe-38deda85c593",
+  "revision": 0,
+  "last_node_id": 19,
+  "last_link_id": 11,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "JSON_Prompt_Generator",
+      "pos": [
+        4717.454739517712,
+        3508.650747362758
+      ],
+      "size": [
+        490,
+        340
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "prompt_to_llm",
+          "type": "STRING",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "fr0nky0ng/ComfyUI-JSON-Prompt",
+        "ver": "b80862ccb4fccbd3f5ad986289761a2bd6fceb73",
+        "Node name for S&R": "JSON_Prompt_Generator",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "一張中距離人像抓拍：一個皮膚白皙身材高挑的年輕的中國女子，黑色長髮鬆散的盤起，身穿白衫，高腰白色布褲（腰身和臀部收緊，到褲腳逐漸寬鬆）外罩栗色對襟薄毛衣，白色運動鞋（類似籃球鞋的款式），一手跨包一手拿著手機，優雅的站在地鐵站的露天月台,側身扭頭看向鏡頭。神色平靜甜蜜。白日光線柔和。\n\n",
+        "standard prime (50mm)",
+        "f/1.4",
+        "highlight-weighted to preserve dynamic range",
+        "vertical",
+        "full-body",
+        "eye-level"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 9,
+      "type": "OllamaConnectivityV2",
+      "pos": [
+        4937.454739517712,
+        3288.650747362758
+      ],
+      "size": [
+        270,
+        154
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "connection",
+          "type": "OLLAMA_CONNECTIVITY",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-ollama",
+        "ver": "6db7560576e5a59488708e6be13e07b5aba2432a",
+        "Node name for S&R": "OllamaConnectivityV2",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "http://127.0.0.1:11434",
+        "qwen3:latest",
+        5,
+        "minutes",
+        null
+      ]
+    },
+    {
+      "id": 8,
+      "type": "OllamaGenerateV2",
+      "pos": [
+        5267.454739517712,
+        3298.650747362758
+      ],
+      "size": [
+        400,
+        294
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "connectivity",
+          "shape": 7,
+          "type": "OLLAMA_CONNECTIVITY",
+          "link": 4
+        },
+        {
+          "name": "options",
+          "shape": 7,
+          "type": "OLLAMA_OPTIONS",
+          "link": null
+        },
+        {
+          "name": "images",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "context",
+          "shape": 7,
+          "type": "OLLAMA_CONTEXT",
+          "link": null
+        },
+        {
+          "name": "meta",
+          "shape": 7,
+          "type": "OLLAMA_META",
+          "link": null
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "result",
+          "type": "STRING",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "thinking",
+          "type": "STRING",
+          "links": []
+        },
+        {
+          "name": "context",
+          "type": "OLLAMA_CONTEXT",
+          "links": null
+        },
+        {
+          "name": "meta",
+          "type": "OLLAMA_META",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-ollama",
+        "ver": "6db7560576e5a59488708e6be13e07b5aba2432a",
+        "Node name for S&R": "OllamaGenerateV2",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "You are both a photography master and a professional prompting engineer.",
+        "",
+        false,
+        false,
+        "text"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "Format_LLM_Output",
+      "pos": [
+        5727.454739517712,
+        3298.650747362758
+      ],
+      "size": [
+        310,
+        50
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "llm_output",
+          "type": "STRING",
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "cleaned_json_string",
+          "type": "STRING",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "fr0nky0ng/ComfyUI-JSON-Prompt",
+        "ver": "b80862ccb4fccbd3f5ad986289761a2bd6fceb73",
+        "Node name for S&R": "Format_LLM_Output",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        true
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ShowText|pysssss",
+      "pos": [
+        6107.454739517712,
+        3278.650747362758
+      ],
+      "size": [
+        570,
+        410
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "1.2.5",
+        "Node name for S&R": "ShowText|pysssss",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      2,
+      1,
+      0,
+      8,
+      5,
+      "STRING"
+    ],
+    [
+      4,
+      9,
+      0,
+      8,
+      0,
+      "OLLAMA_CONNECTIVITY"
+    ],
+    [
+      10,
+      8,
+      0,
+      17,
+      0,
+      "STRING"
+    ],
+    [
+      11,
+      17,
+      0,
+      11,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "JSON Prompt",
+      "bounding": [
+        4707.454739517712,
+        3208.650747362758,
+        1980,
+        653.6
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "ds": {
+      "scale": 0.42095405983241596,
+      "offset": [
+        -4234.145674933828,
+        -2986.1803469799797
+      ]
+    },
+    "frontendVersion": "1.28.8",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
