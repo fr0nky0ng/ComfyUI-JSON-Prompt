@@ -90,23 +90,7 @@
             "texture": "Highly smoothed skin, poreless appearance ('porcelain doll' or 'beauty filter' effect)",
             "sharpen": "selective on eyes/lashes",
             "blemish_control": "Complete removal of all blemishes and texture."
-        },
-        "quality_targets": [
-            "accurate limb lengths and joint angles",
-            "correct finger count and articulation",
-            "realistic fabric tension and folds",
-            "accurate winking expression"
-        ],
-        "negative_prompt": [
-            "no altered or exaggerated body proportions",
-            "no extra or fused fingers",
-            "no realistic skin texture, pores, or blemishes",
-            "no text or watermarks (excluding specified logos)",
-            "no extreme wide-angle distortion",
-            "no NSFW content",
-            "no dark/moody lighting",
-            "no warm tones"
-        ]
+        }
     },
     "camera_settings": {
         "lens": [

@@ -189,11 +189,12 @@ class FormatLLMOutput:
         return {
             "required": {
                 "llm_output": ("STRING", {"forceInput": True}),
-                "include_negative_prompt": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No"}),
+                "include_quality_prompt": ("BOOLEAN", {"default": False, "label_on": "Yes", "label_off": "No"}),
+                "include_negative_prompt": ("BOOLEAN", {"default": False, "label_on": "Yes", "label_off": "No"}),
             },
         }
 
-    def format_output(self, llm_output, include_negative_prompt):
+    def format_output(self, llm_output, include_quality_prompt, include_negative_prompt):
         cleaned_text = ""
         if not llm_output or not isinstance(llm_output, str):
             # 應該接收到 STRING 類型的輸入
@@ -207,7 +208,8 @@ class FormatLLMOutput:
             if match:
                 cleaned_text = match.group(1).strip()
         prompt_dict = json.loads(cleaned_text)
-        prompt_dict["quality_targets"] = QUALITY_TARGETS
+        if include_quality_prompt:
+            prompt_dict["quality_targets"] = QUALITY_TARGETS
         if include_negative_prompt:
             prompt_dict["negative_prompt"] = NEGATIVE_PROMPT
         cleaned_text = json.dumps(prompt_dict, indent=4, ensure_ascii=False)
@@ -215,191 +217,3 @@ class FormatLLMOutput:
         # 最終再次清理首尾空格和換行符
         final_output = cleaned_text.strip()
         return (final_output,)
-
-
-# pending to debug
-'''
-class GeminiPromptNode:
-    NODE_NAME = "Gemini_Prompt_Node"
-    CATEGORY = "LLM"  # 將其放在一個新的類別 "LLM" 中
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("result",)
-    FUNCTION = "call_gemini"
-
-    @classmethod
-    def INPUT_TYPES(s):
-        """
-        定義輸入參數：
-        1. prompt: 用於接收提示詞的輸入阜。
-        2. api_key: 用於填寫 API KEY 的輸入框。
-        3. gemini_version: 用於選擇 Gemini 模型的下拉選單。
-        """
-        return {
-            "required": {
-                "prompt": ("STRING", {"forceInput": True}),
-                "api_key": ("STRING", {"multiline": False, "default": ""}),
-                "gemini_version": (
-                    [
-                        "gemini-2.5-flash",
-                        "gemini-2.5-flash-lite",
-                        "gemini-2.5-pro",
-                        # 如果需要，可以添加更多模型
-                    ],
-                    {"default": "gemini-2.5-flash"},
-                ),
-            }
-        }
-
-    def call_gemini(self, prompt, api_key, gemini_version):
-        """
-        調用 Gemini API 並返回結果。
-        """
-        # 1. 檢查 API Key 是否提供
-        if not api_key:
-            return ("ERROR: API Key is missing.",)
-
-        # 2. 配置 API Key
-        try:
-            genai.configure(api_key=api_key)
-        except Exception as e:
-            return (f"ERROR: Failed to configure Gemini API. {e}",)
-
-        # 3. 創建模型實例
-        try:
-            model = genai.GenerativeModel(gemini_version)
-        except Exception as e:
-            return (f"ERROR: Failed to create Gemini model. {e}",)
-
-        # 4. 提交 prompt 並獲取結果
-        try:
-            response = model.generate_content(prompt)
-            # 處理可能沒有 text 的情況
-            if response.parts:
-                result_text = response.text
-            else:
-                # 如果沒有可顯示的文本部分，返回提示信息
-                # 您可以檢查 response.prompt_feedback 來了解原因
-                return (f"Warning: No valid text part in response. Finish reason: {response.prompt_feedback.block_reason.name}", )
-        except Exception as e:
-            return (f"ERROR: An error occurred while calling the API. {e}",)
-
-        # 5. 返回結果
-        return (result_text,)
-
-
-
-class GeminiImageNode:
-    """
-    ComfyUI 自定義節點：用於調用 Gemini/Imagen API 進行圖片生成。
-    """
-    NODE_NAME = "Gemini_Image_Node"
-    CATEGORY = "LLM/Image"
-    RETURN_TYPES = ("IMAGE",)  # ComfyUI 圖片類型
-    RETURN_NAMES = ("image",)
-    FUNCTION = "generate_image"
-
-    # 用於將用戶友好的比例映射到 API 所需的格式
-    ASPECT_RATIO_MAPPING = {
-        "1:1": "1:1",
-        "9:16": "9:16_P",  # 肖像
-        "16:9": "16:9_L",  # 風景
-        "3:4": "3:4_P",
-        "4:3": "4:3_L",
-        "2:3": "2:3_P",
-        "3:2": "3:2_L",
-    }
-
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "prompt": ("STRING", {"forceInput": True, "multiline": True, "default": ""}),
-                "api_key": ("STRING", {"multiline": False, "default": ""}),
-                "image_model": (
-                    [
-                        "gemini-2.5-flash-image",
-                        "imagen-4.0-generate-001",
-                        "imagen-4.0-ultra-generate-001",
-                    ],
-                    {"default": "imagen-4.0-generate-001"},
-                ),
-                "aspect_ratio": (
-                    list(s.ASPECT_RATIO_MAPPING.keys()),
-                    {"default": "1:1"},
-                ),
-            },
-        }
-
-    def generate_image(self, prompt, api_key, image_model, aspect_ratio):
-        """
-        調用 Gemini/Imagen API 進行圖片生成，並將結果轉換為 ComfyUI 的 IMAGE 類型。
-        """
-        # 1. 檢查 API Key 和 Prompt
-        if not api_key:
-            raise ValueError("ERROR: API Key is missing.")
-        if not prompt or not prompt.strip():
-            # 為了避免 API 調用錯誤，對空 Prompt 進行處理
-            return (torch.zeros((1, 64, 64, 3)),)  # 返回一個空圖片張量作為提示
-
-        # 2. 配置 API Client
-        try:
-            # 圖片生成要求使用 genai.Client
-            client = genai.Client(api_key=api_key)
-        except AttributeError:
-            # 處理您遇到的錯誤：模塊沒有 Client 屬性，通常是版本過舊
-            raise RuntimeError(
-                "ERROR: Failed to initialize Gemini Client. "
-                "The 'google-generativeai' library is likely outdated. "
-                "Please run: 'pip install --upgrade google-generativeai'"
-            )
-        except Exception as e:
-            raise RuntimeError(
-                f"ERROR: Failed to initialize Gemini Client. Details: {e}")
-
-        # 3. 獲取 API 格式的 Aspect Ratio
-        api_ratio = self.ASPECT_RATIO_MAPPING.get(aspect_ratio, "1:1")
-
-        # 4. 提交 prompt 並獲取結果
-        try:
-            # 使用 client.models.generate_images 進行文生圖調用 (官方推薦方式)
-            response = client.models.generate_images(
-                model=image_model,
-                prompt=prompt,
-                config=dict(
-                    number_of_images=1,  # 默認只生成一張圖片
-                    aspect_ratio=api_ratio,
-                )
-            )
-
-            # 5. 處理結果並轉換為 ComfyUI IMAGE 張量
-            if not response.generated_images:
-                # 檢查是否有 block_reason
-                if response.prompt_feedback and response.prompt_feedback.block_reason:
-                    raise RuntimeError(
-                        f"Image generation blocked. Reason: {response.prompt_feedback.block_reason.name}")
-                raise RuntimeError("ERROR: API returned no generated images.")
-
-            # 提取第一張圖片的 base64 編碼數據
-            # generated_images[0].image.image_bytes 包含 base64 編碼的 bytes
-            image_data_base64 = response.generated_images[0].image.image_bytes
-            image_bytes = base64.b64decode(image_data_base64)
-
-            # 使用 PIL 讀取圖片
-            img = Image.open(io.BytesIO(image_bytes))
-
-            # 將 PIL Image 轉換為 NumPy Array
-            # 格式：(Height, Width, Channel)，並將值歸一化到 0-1
-            image_array = np.array(img).astype(np.float32) / 255.0
-
-            # 轉換為 PyTorch 張量，並添加 Batch 維度
-            # 格式：(Batch_Size, Height, Width, Channel)
-            image_tensor = torch.from_numpy(image_array).unsqueeze(0)
-
-            # 6. 返回結果
-            return (image_tensor,)
-
-        except Exception as e:
-            # 將錯誤信息包裝為 ComfyUI 節點錯誤
-            raise RuntimeError(
-                f"ERROR: An error occurred during image generation. Details: {e}")
-'''
