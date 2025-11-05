@@ -194,31 +194,18 @@ class FormatLLMOutput:
         }
 
     def format_output(self, llm_output, include_negative_prompt):
+        cleaned_text = ""
         if not llm_output or not isinstance(llm_output, str):
             # 應該接收到 STRING 類型的輸入
             return ("",)
-        # 1. 移除 <think>...</think> 標籤及其內容
-        # re.DOTALL 確保 . 匹配換行符，以便處理多行 <think> 內容
-        # re.IGNORECASE 確保大小寫不敏感
-        cleaned_text = re.sub(
-            r'<think>.*?</think>',
-            '',
-            llm_output,
-            flags=re.DOTALL | re.IGNORECASE
-        )
-
-        # 2. 移除 Markdown 代碼塊標籤
-        # 清理首尾空格和換行符
-        cleaned_text = cleaned_text.strip()
-
-        # 檢查是否以 ```json 開頭
-        if cleaned_text.startswith("```json"):
-            cleaned_text = cleaned_text[len("```json"):].strip()
-
-        # 檢查是否以 ``` 結尾
-        if cleaned_text.endswith("```"):
-            cleaned_text = cleaned_text[:-len("```")].strip()
-        
+        if llm_output.strip().startswith("{") and llm_output.strip().endswith("}"):
+            cleaned_text = llm_output.strip()
+        else:
+            # 正则表达式：匹配 ```json 开头（允许空白和换行），捕获中间内容，到 ``` 结尾
+            pattern = r'```json\s*\n?(.*?)\n?\s*```'
+            match = re.search(pattern, llm_output, re.DOTALL | re.IGNORECASE) 
+            if match:
+                cleaned_text = match.group(1).strip()
         prompt_dict = json.loads(cleaned_text)
         prompt_dict["quality_targets"] = QUALITY_TARGETS
         if include_negative_prompt:
@@ -227,7 +214,6 @@ class FormatLLMOutput:
 
         # 最終再次清理首尾空格和換行符
         final_output = cleaned_text.strip()
-
         return (final_output,)
 
 

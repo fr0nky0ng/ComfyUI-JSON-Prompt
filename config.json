@@ -1,5 +1,5 @@
 {
-    "system_prompt": "Update the JSON template below with the above description in English. You need to refer to the style of each field in the template when updating; do not simply retain the template's default values. If a field cannot be found in the given description, you can adjust its settings based on experience. All updates must be in English, and you should ultimately only return JSON data.",
+    "system_prompt": "Please update the JSON template below with the description above in English. You need to update every field in the JSON template. If a field is not found in the given description, you can fill in the appropriate content based on experience. All updates must be in English, and the final result should only return JSON data wrapped in Markdown code blocks (e.g., using three backticks and the language specifier ```json).",
     "template": {
         "style": "High-key studio portrait, direct flash aesthetic, East Asian social media style (e.g., Ulzzang, Douyin), stylized beauty retouching.",
         "output": {
@@ -24,7 +24,7 @@
                 "gaze": "right eye direct to camera",
                 "eye_action": "winking with the left eye",
                 "skin_tone": "Very pale porcelain (lightened aesthetic)",
-                "makeup": "Stylized K-Beauty/Douyin look: flawless matte base, strong pink blush high on cheeks, pink gradient lips, defined brows, light eyeliner, emphasized Aegyo-sal",
+                "makeup": "",
                 "features": "small beauty mark/mole under the left eye"
             },
             "hair": {
