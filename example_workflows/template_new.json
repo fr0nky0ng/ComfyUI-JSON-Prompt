@@ -1,0 +1,24 @@
+{
+    "style": "Natural street portrait, soft natural lighting, subtle East Asian aesthetic, balanced color, restrained retouching.",
+    "subject": {
+        "identity": "East Asian (Chinese) young adult female.",
+        "appearance": "Tall, slender, long straight black-brown hair, fair luminous skin, minimal natural makeup.",
+        "pose": "Full-body, standing upright, waist slightly turned, gentle smile, direct gaze with left eye.",
+        "wardrobe": "White long-sleeve shirt, light-gray cardigan sweater, white loose pants, white sneakers."
+    },
+    "environment": {
+        "setting": "Urban street, clean neutral backdrop, cold and quiet mood."
+    },
+    "photography": {
+        "lighting": "Natural daylight key light, soft fill flash (low intensity), warm highlights, soft shadows.",
+        "camera": {
+            "lens": "Telephoto prime 135mm lens, full-frame sensor.",
+            "exposure": "Aperture f/2.0, ISO 100, shallow depth of field."
+        },
+        "framing": "Vertical orientation, full-body crop, eye-level angle, centered composition."
+    },
+    "post_production": {
+        "color_grade": "Bright, clean, slightly cool tone, moderate-high contrast, subtle saturation.",
+        "retouching": "Natural skin texture, selective sharpening on eyes and facial features."
+    }
+}

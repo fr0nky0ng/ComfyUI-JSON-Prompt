@@ -1,95 +1,27 @@
 {
     "system_prompt": "Please update the JSON template below with the description above in English. You need to update every field in the JSON template. If a field is not found in the given description, you can fill in the appropriate content based on experience. All updates must be in English, and the final result should only return JSON data wrapped in Markdown code blocks (e.g., using three backticks and the language specifier ```json).",
     "template": {
-        "style": "High-key studio portrait, direct flash aesthetic, East Asian social media style (e.g., Ulzzang, Douyin), stylized beauty retouching.",
-        "output": {
-            "color_profile": "sRGB",
-            "render_intent": "photo"
-        },
+        "style": "Natural street portrait, soft natural lighting, subtle East Asian aesthetic, balanced color, restrained retouching.",
         "subject": {
-            "category": "human",
-            "gender_presentation": "female",
-            "ethnicity": "East Asian (e.g., Korean, Chinese)",
-            "age_bracket": "young_adult",
-            "body": {
-                "build": "slim",
-                "proportions": "natural human anatomy",
-                "posture": "relaxed on sofa, seated casually",
-                "pose": "seated, legs crossed and tucked close to body",
-                "gesture": "Right hand raised, fingers loosely curled, back of fingers/knuckles gently supporting the chin and lower cheek.",
-                "head_tilt_deg": 5
-            },
-            "face": {
-                "expression": "Playful, alluring",
-                "gaze": "right eye direct to camera",
-                "eye_action": "winking with the left eye",
-                "skin_tone": "Very pale porcelain (lightened aesthetic)",
-                "makeup": "",
-                "features": "small beauty mark/mole under the left eye"
-            },
-            "hair": {
-                "length": "long",
-                "style": "messy high updo/bun with loose strands and curtain bangs",
-                "color": "dark brown"
-            },
-            "wardrobe": {
-                "top": "white fitted cropped camisole",
-                "outerwear": "light gray zip hoodie, worn open and slightly slipping off both shoulders",
-                "bottom": "white lounge shorts with drawstring",
-                "footwear": "barefoot"
-            }
+            "identity": "East Asian (Chinese) young adult female.",
+            "appearance": "Tall, slender, long straight black-brown hair, fair luminous skin, minimal natural makeup.",
+            "pose": "Full-body, standing upright, waist slightly turned, gentle smile, direct gaze with left eye.",
+            "wardrobe": "White long-sleeve shirt, light-gray cardigan sweater, white loose pants, white sneakers."
         },
         "environment": {
-            "location": "studio or minimalist interior",
-            "set": "black leather sofa against a plain white or light gray wall",
-            "props": "Silver laptop (Apple MacBook, logo visible) placed on the cushion to the subject's right (camera left)"
+            "setting": "Urban street, clean neutral backdrop, cold and quiet mood."
         },
-        "lighting": {
-            "key": {
-                "source": "strobe/flash",
-                "modifier": "Bare reflector or direct flash (hard source)",
-                "position": "Near camera axis, slightly camera-right and above eye line",
-                "effect": "Crisp, dark, well-defined cast shadows on the wall directly behind subject; strong specular highlights on skin and sofa leather."
+        "photography": {
+            "lighting": "Natural daylight key light, soft fill flash (low intensity), warm highlights, soft shadows.",
+            "camera": {
+                "lens": "Telephoto prime 135mm lens, full-frame sensor.",
+                "exposure": "Aperture f/2.0, ISO 100, shallow depth of field."
             },
-            "fill": {
-                "type": "minimal/none"
-            },
-            "ambient": "suppressed",
-            "white_balance_K": 5800
+            "framing": "Vertical orientation, full-body crop, eye-level angle, centered composition."
         },
-        "camera": {
-            "system": "Digital Camera",
-            "sensor": "full-frame equivalent",
-            "lens": {
-                "type": "prime",
-                "focal_length_mm": 50
-            },
-            "exposure": {
-                "iso": 100,
-                "aperture_f": 4.0,
-                "metering": "Bright exposure, high-key aesthetic"
-            },
-            "focus": {
-                "target": "near eye (right eye)",
-                "depth_of_field": "moderate"
-            },
-            "framing": {
-                "orientation": "vertical",
-                "crop": "mid-thigh to head with room above hair",
-                "angle": "eye-level",
-                "composition": "subject centrally framed"
-            }
-        },
-        "color_grade": {
-            "look": "Bright, clean, slightly cool tone",
-            "contrast": "High contrast",
-            "saturation": "moderate, emphasized pinks"
-        },
-        "postprocess": {
-            "noise_reduction": "high",
-            "texture": "Highly smoothed skin, poreless appearance ('porcelain doll' or 'beauty filter' effect)",
-            "sharpen": "selective on eyes/lashes",
-            "blemish_control": "Complete removal of all blemishes and texture."
+        "post_production": {
+            "color_grade": "Bright, clean, slightly cool tone, moderate-high contrast, subtle saturation.",
+            "retouching": "Natural skin texture, selective sharpening on eyes and facial features."
         }
     },
     "camera_settings": {
