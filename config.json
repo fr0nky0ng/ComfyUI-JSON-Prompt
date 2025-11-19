@@ -1,13 +1,13 @@
 {
-    "system_prompt": "Please update the JSON template below with the description above in English. You need to update every field in the JSON template. If a field is not found in the given description, you can fill in the appropriate content based on experience. All updates must be in English, and the final result should only return JSON data wrapped in Markdown code blocks (e.g., using three backticks and the language specifier ```json).",
+    "system_prompt": "Please update the JSON template below with the description above in English. You need to update every field in the JSON template. If a field is not found in the given description, you can fill in the appropriate content based on experience. All updates must be in English, and the final result should only return JSON data wrapped in Markdown code blocks (e.g., using three backticks and the language specifier ```json). Additional requirement: If there are multiple characters, list them separately under the subject field.",
     "template": {
         "style": "Natural street portrait, soft natural lighting, subtle East Asian aesthetic, balanced color, restrained retouching.",
-        "subject": {
+        "subject": [{
             "identity": "East Asian (Chinese) young adult female.",
             "appearance": "Tall, slender, long straight black-brown hair, fair luminous skin, minimal natural makeup.",
             "pose": "Full-body, standing upright, waist slightly turned, gentle smile, direct gaze with left eye.",
             "wardrobe": "White long-sleeve shirt, light-gray cardigan sweater, white loose pants, white sneakers."
-        },
+        }],
         "environment": {
             "setting": "Urban street, clean neutral backdrop, cold and quiet mood."
         },
