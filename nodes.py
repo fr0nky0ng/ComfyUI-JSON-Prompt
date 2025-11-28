@@ -1,7 +1,6 @@
 import json
 import os
 import re
-import copy
 '''
 import google.generativeai as genai  # 導入 Google AI 函式庫
 '''
@@ -191,10 +190,24 @@ class FormatLLMOutput:
                 "llm_output": ("STRING", {"forceInput": True}),
                 "include_quality_prompt": ("BOOLEAN", {"default": False, "label_on": "Yes", "label_off": "No"}),
                 "include_negative_prompt": ("BOOLEAN", {"default": False, "label_on": "Yes", "label_off": "No"}),
+                # ==================== 新增的两个开关 ====================
+                "use_single_quotes": ("BOOLEAN", {
+                    "default": False,
+                    "label_on": "Yes",
+                    "label_off": "No",
+                    "tooltip": "If enabled, all double quotes in the final JSON will be replaced with single quotes (non-standard JSON)"
+                }),
+                "no_quotation_marks": ("BOOLEAN", {
+                    "default": False,
+                    "label_on": "Yes",
+                    "label_off": "No",
+                    "tooltip": "If enabled, all quotation marks (both double and single) around keys and values will be removed (produces non-JSON text, useful for some prompt templates)"
+                }),
+                # ========================================================
             },
         }
 
-    def format_output(self, llm_output, include_quality_prompt, include_negative_prompt):
+    def format_output(self, llm_output, include_quality_prompt, include_negative_prompt, use_single_quotes, no_quotation_marks):
         cleaned_text = ""
         if not llm_output or not isinstance(llm_output, str):
             # 應該接收到 STRING 類型的輸入
@@ -213,6 +226,30 @@ class FormatLLMOutput:
         if include_negative_prompt:
             prompt_dict["negative_prompt"] = NEGATIVE_PROMPT
         cleaned_text = json.dumps(prompt_dict, indent=4, ensure_ascii=False)
+
+        # ==================== 新增功能实现 ====================
+
+        # 功能1：全部使用单引号（非标准 JSON，仅用于某些提示模板）
+        if use_single_quotes and not no_quotation_marks:  # 单引号模式优先级低于“完全去引号”
+            cleaned_text = cleaned_text.replace('"', "'")
+
+        # 功能2：完全去除所有键值周围的引号（会变成类似 key: value, key2: value2 的格式）
+        if no_quotation_marks:
+            # 先把所有 "key": 变成 key:， "value" 变成 value
+            # 注意：这里要小心处理转义引号和值中包含引号的情况，下面用一个相对安全的正则方式
+            # 匹配 "任意非\"内容"（键或值），替换为不带引号的内容
+            def remove_quotes(match):
+                content = match.group(1)
+                # 去掉转义的 \" 
+                content = content.replace(r'\"', '"')
+                return content
+
+            cleaned_text = re.sub(r'"([^"\\]*(?:\\.[^"\\]*)*)"', lambda m: remove_quotes(m), cleaned_text)
+            # 同时把键后面的冒号前后的引号也已经处理了
+            # 再把所有剩余的 \" 还原（极少数情况）
+            cleaned_text = cleaned_text.replace(r'\"', '"')
+
+        # =====================================================
 
         # 最終再次清理首尾空格和換行符
         final_output = cleaned_text.strip()
